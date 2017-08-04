@@ -24,7 +24,9 @@ libraryDependencies ++= {
     "org.scalatest"               %% "scalatest"        % "2.2.6"       % "test",
 
     // Serialization libraries
-    "com.typesafe.play"           %% "play-json"        % "2.6.0"
+    "com.typesafe.play"           %% "play-json"        % "2.6.0",
 
+    // Lagom
+    "com.lightbend.lagom"         % "lagom-scaladsl-play-json_2.11" % "1.4.0-M1"
   )
 }
