@@ -23,8 +23,8 @@ libraryDependencies ++= {
     "ch.qos.logback"              %  "logback-classic"  % "1.1.3",
     "org.scalatest"               %% "scalatest"        % "2.2.6"       % "test",
 
-    // Scala Pickling library
-    "me.chrons"                   %% "boopickle"        % "1.2.4"
+    // Serialization libraries
+    "com.typesafe.play"           %% "play-json"        % "2.6.0"
 
   )
 }
