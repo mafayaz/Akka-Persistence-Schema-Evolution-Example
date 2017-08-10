@@ -22,10 +22,12 @@ class ShoppingCartEventAdapter extends EventAdapter {
 
   override def fromJournal(event: Any, manifest: String): EventSeq = event match {
     case sc @ ShoppingCartV1(itemsV1) =>
-      println("Reading V1 from journal and doing promotion to V3")
+      println("Reading V1 from journal")
+//      println("Reading V1 from journal and doing promotion to V3")
       EventSeq(
-      // do promotion
-      ShoppingCartV3(itemsV1.map(each => ItemV3(each.id, each.name, "")))
+      sc
+        // do promotion
+//      ShoppingCartV3(itemsV1.map(each => ItemV3(each.id, each.name, "")))
     )
     case sc @ ShoppingCartV2(itemsV2) =>
       println("Reading V2 from journal and doing promotion to V3")
