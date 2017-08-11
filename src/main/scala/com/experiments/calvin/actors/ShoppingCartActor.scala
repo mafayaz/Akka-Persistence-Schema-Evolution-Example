@@ -6,7 +6,7 @@ import com.experiments.calvin.actors.ShoppingCartActor.GetResult
 import com.experiments.calvin.models.ShoppingCart
 
 class ShoppingCartActor extends PersistentActor with ActorLogging {
-  var state = ShoppingCart(List.empty)
+  var state = ShoppingCart(null)
 
   val updateState: ShoppingCart => Unit = {
     sc: ShoppingCart => state = sc

@@ -18,19 +18,11 @@ import scala.language.postfixOps
 object Main extends App {
 
   val shoppingCart = ShoppingCart(
-    List(
-      Item(1, "lays chips"),
-      Item(2, "caramilk chocolate")
-    )
-  )
-
-//  val shoppingCart = ShoppingCartV3(
 //    List(
-//      ItemV3(1, "lays chips", "cant have just one bite"),
-//      ItemV3(2, "caramilk chocolate", "calories")
+//      Item(1, "lays chips")
+      Item(3, "caramilk chocolate", "bleh", "dumdidah")
 //    )
-//  )
-
+  )
 
   implicit val timeout = Timeout(10 seconds)
 
