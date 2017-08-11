@@ -11,16 +11,10 @@ import play.api.libs.json.{Json, Reads}
   * and when retrieving these items from the journals.
   */
 class ShoppingCartSerializer extends SerializerWithStringManifest {
-  val ShoppingCartV1Manifest = classOf[ShoppingCartV1].getName
-  val ShoppingCartV2Manifest = classOf[ShoppingCartV2].getName
-  val ShoppingCartV3Manifest = classOf[ShoppingCartV3].getName
+  val ShoppingCartManifest = classOf[ShoppingCart].getName
 
-  implicit val itemV1Fmt = Json.format[ItemV1]
-  implicit val itemV2Fmt = Json.format[ItemV2]
-  implicit val itemV3Fmt = Json.format[ItemV3]
-  implicit val shoppingCartV1Fmt = Json.format[ShoppingCartV1]
-  implicit val shoppingCartV2Fmt = Json.format[ShoppingCartV2]
-  implicit val shoppingCartV3Fmt = Json.format[ShoppingCartV3]
+  implicit val itemFmt = Json.format[Item]
+  implicit val shoppingCartFmt = Json.format[ShoppingCart]
   val serializationCharset = Charset.forName("UTF-8")
 
 
@@ -30,15 +24,11 @@ class ShoppingCartSerializer extends SerializerWithStringManifest {
 
   // The manifest (type hint) that will be provided in the fromBinary method
   override def manifest(o: AnyRef): String = o match {
-    case _: ShoppingCartV1 => ShoppingCartV1Manifest
-    case _: ShoppingCartV2 => ShoppingCartV2Manifest
-    case _: ShoppingCartV3 => ShoppingCartV3Manifest
+    case _: ShoppingCart => ShoppingCartManifest
   }
 
   override def toBinary(o: AnyRef): Array[Byte] = o match {
-    case v1: ShoppingCartV1 => Json.stringify(Json.toJson(v1)).getBytes(serializationCharset)
-    case v2: ShoppingCartV2 => Json.stringify(Json.toJson(v2)).getBytes(serializationCharset)
-    case v3: ShoppingCartV3 => Json.stringify(Json.toJson(v3)).getBytes(serializationCharset)
+    case sc: ShoppingCart => Json.stringify(Json.toJson(sc)).getBytes(serializationCharset)
   }
 
   def parse[A <: AnyRef](bytes: Array[Byte])(implicit reads: Reads[A]): AnyRef = {
@@ -47,9 +37,7 @@ class ShoppingCartSerializer extends SerializerWithStringManifest {
   }
 
   override def fromBinary(bytes: Array[Byte], manifest: String): AnyRef = manifest match {
-    case ShoppingCartV1Manifest => parse[ShoppingCartV1](bytes)
-    case ShoppingCartV2Manifest => parse[ShoppingCartV2](bytes)
-    case ShoppingCartV3Manifest => parse[ShoppingCartV3](bytes)
+    case ShoppingCartManifest => parse[ShoppingCart](bytes)
   }
 
 }
